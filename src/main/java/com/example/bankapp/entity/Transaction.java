@@ -9,13 +9,18 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "transaction")
+//@Entity
+//@Table(name = "transaction")
 public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "account_id")
+//    private Account debit_account_id;
     private Long debit_account_id;
+
     private Long credit_account_id;
     private int type;
     private BigDecimal amount;

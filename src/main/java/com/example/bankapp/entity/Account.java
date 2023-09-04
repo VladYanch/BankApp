@@ -9,13 +9,18 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "account")
+//@Entity
+//@Table(name = "account")
 public class Account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "client_id")
+//    private Client client_id;
     private Long client_id;
+
     private String name;
     private int type;
     private int status;

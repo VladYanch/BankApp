@@ -13,15 +13,17 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "client")
+//@Entity
+//@Table(name = "client")
 public class Client {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Id
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "manager_id")
+//    private Manager manager_id;
     private Long manager_id;
 
 //    @NotBlank(message = "{validation.client.tax_code}")

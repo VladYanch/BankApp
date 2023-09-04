@@ -5,20 +5,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "manager")
+//@Entity
+//@Table(name = "manager")
 public class Manager {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String first_name;
     private String last_name;
     private int status;
     private LocalDate create_at;
     private LocalDate updated_at;
+
+//    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    List<Client> client_list = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

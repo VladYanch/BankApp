@@ -9,11 +9,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "product")
+//@Entity
+//@Table(name = "product")
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long manager_id;
     private String name;
