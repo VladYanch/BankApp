@@ -6,16 +6,21 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
-//@Entity
-//@Table(name = "product")
+@Entity
+@Table(name = "product")
 public class Product {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long manager_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private UUID id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "manager_id")
+    private Manager managerId;
+
     private String name;
     private int status;
     private int currency_code;

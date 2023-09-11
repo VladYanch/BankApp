@@ -6,20 +6,21 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
-//@Entity
-//@Table(name = "account")
+@Entity
+@Table(name = "account")
 public class Account {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private UUID id;
 
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "client_id")
-//    private Client client_id;
-    private Long client_id;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "client_id")
+    private Client clientId;
+//    private Long clientId;
 
     private String name;
     private int type;

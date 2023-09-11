@@ -10,21 +10,21 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
-//@Entity
-//@Table(name = "client")
+@Entity
+@Table(name = "client")
 public class Client {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private UUID id;
 
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "manager_id")
-//    private Manager manager_id;
-    private Long manager_id;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "manager_id")
+    private Manager managerId;
 
 //    @NotBlank(message = "{validation.client.tax_code}")
     private int status; // был инт
