@@ -1,31 +1,51 @@
 package com.example.bankapp.entity;
 
+import com.example.bankapp.entity.enums.TransactionType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
-//@Entity
-//@Table(name = "transaction")
+@AllArgsConstructor
+@Entity
+@Table(name = "transaction")
 public class Transaction {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private UUID id;
 
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "account_id")
-//    private Account debit_account_id;
-    private Long debit_account_id;
+    @JoinColumn(name = "account_id")
+    @ManyToOne(optional = false)
+//    @Column(name = "debit_account_id")
+    private Account debitAccount;
 
-    private Long credit_account_id;
-    private int type;
+    @JoinColumn(name = "credit_account_id")
+    @ManyToOne(optional = false)
+//    @Column(name = "credit_account_id")
+    private Account creditAccount;
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private TransactionType type;
+
+    @Column(name = "amount")
     private BigDecimal amount;
+
+    @Column(name = "description")
     private String description;
-    private LocalDate create_at;
+
+    @Column(name = "create_at")
+    private LocalDate createAt;
+
+    public Transaction() {
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -35,15 +55,15 @@ public class Transaction {
         Transaction that = (Transaction) o;
 
         if (!id.equals(that.id)) return false;
-        if (!debit_account_id.equals(that.debit_account_id)) return false;
-        return credit_account_id.equals(that.credit_account_id);
+        if (!debitAccount.equals(that.debitAccount)) return false;
+        return creditAccount.equals(that.creditAccount);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + debit_account_id.hashCode();
-        result = 31 * result + credit_account_id.hashCode();
+        result = 31 * result + debitAccount.hashCode();
+        result = 31 * result + creditAccount.hashCode();
         return result;
     }
 }
