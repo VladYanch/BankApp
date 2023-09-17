@@ -19,16 +19,14 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
-    @JoinColumn(name = "account_id")
-    @ManyToOne(optional = false)
-//    @Column(name = "debit_account_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "debit_account_id", referencedColumnName = "id")
     private Account debitAccount;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "credit_account_id")
-    @ManyToOne(optional = false)
-//    @Column(name = "credit_account_id")
     private Account creditAccount;
 
     @Column(name = "type")

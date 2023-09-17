@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,11 +19,15 @@ import java.util.UUID;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "manager_id")
-    private Manager managerId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    private Manager manager;
+
+    @OneToOne(cascade = {MERGE, PERSIST, REFRESH})
+    @JoinColumn(name = "agreement_id", referencedColumnName = "id")
+    private Agreement agreement;
 
     @Column(name = "name")
     private String name;

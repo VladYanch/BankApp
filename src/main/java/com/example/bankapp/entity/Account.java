@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
@@ -20,11 +20,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "client_id")
-    private Client clientId;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -47,6 +43,28 @@ public class Account {
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private Client client;
+
+    @OneToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "agreement_id", referencedColumnName = "id")
+    private Agreement agreement;
+
+
+    @OneToMany(mappedBy = "debitAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
+    private List<Transaction> debitTransactions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "creditAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
+    private List<Transaction> creditTransactions = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
+//    private List<Transaction> transactions;
+
 
     public Account() {
     }

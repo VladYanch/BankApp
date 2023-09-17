@@ -7,9 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
@@ -18,9 +16,15 @@ import java.util.UUID;
 @Table(name = "manager")
 public class Manager {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
+
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Client> clients = new HashSet<>();
+
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Product> products = new HashSet<>();
 
     @Column(name = "first_name")
     private String firstName;
@@ -37,9 +41,6 @@ public class Manager {
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
-
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<Client> clientList = new ArrayList<>();
 
     public Manager() {
     }

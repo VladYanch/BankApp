@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,16 +21,15 @@ public class Agreement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "account_id")
-    private Account accountId;
+    @OneToOne(cascade = {MERGE, PERSIST, REFRESH})
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id")
-    private Product productId;
-//    Set<Product> productId;
+    @OneToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 
     @Column(name = "interest_rate")
     private BigDecimal interestRate;

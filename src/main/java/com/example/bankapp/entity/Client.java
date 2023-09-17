@@ -12,6 +12,8 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -25,11 +27,11 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "manager_id")
-    private Manager managerId;
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    private Manager manager;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -42,7 +44,6 @@ public class Client {
 
 //    @NotBlank(message = "{validation.client.tax_code}")
 //    @Length(max = 100, message = "{validation.client.tax_code.length}")
-
     @Column(name = "first_name")
     private String firstName;
 
@@ -75,6 +76,9 @@ public class Client {
 //    @NotBlank(message = "{validation.client.updated_at}")
     @Column(name = "updated_at")
     private LocalDate updatedAt;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Account> accounts = new HashSet<>();
 
     public Client() {
     }
