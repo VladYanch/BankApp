@@ -1,5 +1,8 @@
 package com.example.bankapp.entity;
 
+import com.example.bankapp.entity.enums.CurrencyCode;
+import com.example.bankapp.entity.enums.ProductName;
+import com.example.bankapp.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +10,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Currency;
 import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.*;
@@ -30,13 +34,15 @@ public class Product {
     private Agreement agreement;
 
     @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private ProductName name;
 
     @Column(name = "status")
-    private int status;
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
 
     @Column(name = "currency_code")
-    private int currencyCode;
+    private CurrencyCode currencyCode;
 
     @Column(name = "interest_rate")
     private BigDecimal interestRate;

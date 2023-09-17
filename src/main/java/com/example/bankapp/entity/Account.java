@@ -1,6 +1,7 @@
 package com.example.bankapp.entity;
 
 import com.example.bankapp.entity.enums.AccountStatus;
+import com.example.bankapp.entity.enums.CurrencyCode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,7 +37,8 @@ public class Account {
     private BigDecimal balance;
 
     @Column(name = "currency_code")
-    private int currencyCode;
+    @Enumerated(EnumType.STRING)
+    private CurrencyCode currencyCode;
 
     @Column(name = "create_at")
     private LocalDate createAt;
@@ -52,19 +54,11 @@ public class Account {
     @JoinColumn(name = "agreement_id", referencedColumnName = "id")
     private Agreement agreement;
 
-
     @OneToMany(mappedBy = "debitAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
     private List<Transaction> debitTransactions = new ArrayList<>();
 
     @OneToMany(mappedBy = "creditAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
     private List<Transaction> creditTransactions = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
-//    private List<Transaction> transactions;
-
 
     public Account() {
     }
