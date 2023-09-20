@@ -1,12 +1,13 @@
 package com.example.bankapp.entity;
 
-import com.example.bankapp.entity.enums.AgreementStatus;
+import com.example.bankapp.entity.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ public class Agreement {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(cascade = {MERGE, PERSIST, REFRESH})
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
@@ -36,7 +37,7 @@ public class Agreement {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private AgreementStatus status;
+    private Status status;
 
     @Column(name = "total")
     private BigDecimal total;

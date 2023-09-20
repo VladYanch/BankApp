@@ -1,13 +1,14 @@
 package com.example.bankapp.entity;
 
-import com.example.bankapp.entity.enums.AccountStatus;
 import com.example.bankapp.entity.enums.CurrencyCode;
+import com.example.bankapp.entity.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -31,7 +32,7 @@ public class Account {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private AccountStatus status;
+    private Status status;
 
     @Column(name = "balance")
     private BigDecimal balance;
@@ -50,8 +51,7 @@ public class Account {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
 
-    @OneToOne (fetch = FetchType.LAZY)
-    @JoinColumn(name = "agreement_id", referencedColumnName = "id")
+    @OneToOne (mappedBy = "account")
     private Agreement agreement;
 
     @OneToMany(mappedBy = "debitAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

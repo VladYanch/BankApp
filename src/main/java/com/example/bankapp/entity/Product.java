@@ -2,7 +2,7 @@ package com.example.bankapp.entity;
 
 import com.example.bankapp.entity.enums.CurrencyCode;
 import com.example.bankapp.entity.enums.ProductName;
-import com.example.bankapp.entity.enums.ProductStatus;
+import com.example.bankapp.entity.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,8 +29,7 @@ public class Product {
     @JoinColumn(name = "manager_id", referencedColumnName = "id")
     private Manager manager;
 
-    @OneToOne(cascade = {MERGE, PERSIST, REFRESH})
-    @JoinColumn(name = "agreement_id", referencedColumnName = "id")
+    @OneToOne (mappedBy = "product")
     private Agreement agreement;
 
     @Column(name = "name")
@@ -39,7 +38,7 @@ public class Product {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private ProductStatus status;
+    private Status status;
 
     @Column(name = "currency_code")
     private CurrencyCode currencyCode;
@@ -48,7 +47,7 @@ public class Product {
     private BigDecimal interestRate;
 
     @Column(name = "total")
-    private int total;
+    private int max_limit;
 
     @Column(name = "create_at")
     private LocalDate createAt;

@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-managers
+      author: VladyslavYanchenko
+      changes:
+        - insert:
+            tableName: managers
+            columns:
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: first_name
+                  value: "Tom"
+              - column:
+                  name: last_name
+                  value: "Smith"
+              - column:
+                  name: status
+                  value: "0"
+              - column:
+                  name: created_at
+                  value: "2023-09-20 20:22:08.788"
+              - column:
+                  name: updated_at
+                  value: "2023-09-20 20:22:08.788"
+#                  value: "2023-09-20"
+
+        - insert:
+            tableName: managers
+            columns:
+              - column:
+                  name: id
+                  value: "2"
+              - column:
+                  name: first_name
+                  value: "Mike"
+              - column:
+                  name: last_name
+                  value: "Hudson"
+              - column:
+                  name: status
+                  value: "0"
+              - column:
+                  name: created_at
+                  value: "2023-09-20 20:22:08.788"
+#                  value: "2023-09-20"
+              - column:
+                  name: updated_at
+                  value: "2023-09-20 20:22:08.788"
+#                  value: "2023-09-20"

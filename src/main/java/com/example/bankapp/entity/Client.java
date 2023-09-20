@@ -1,6 +1,6 @@
 package com.example.bankapp.entity;
 
-import com.example.bankapp.entity.enums.ClientStatus;
+import com.example.bankapp.entity.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
@@ -35,7 +35,7 @@ public class Client {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private ClientStatus status;
+    private Status status;
 
 //    @NotBlank(message = "{validation.client.tax_code}")
 //    @Length(max = 20, message = "{validation.client.tax_code.length}")
