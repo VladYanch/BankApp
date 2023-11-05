@@ -37,7 +37,8 @@ public class Manager {
     private ManagerStatus status;
 
     @Column(name = "create_at")
-    private LocalDate createAt;
+//    private LocalDate createAt;
+    private String createAt;
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;

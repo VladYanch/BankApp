@@ -8,13 +8,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.*;
 
 @Getter
 @Setter
-//@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "account")

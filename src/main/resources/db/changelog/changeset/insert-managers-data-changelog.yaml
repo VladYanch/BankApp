@@ -4,7 +4,7 @@ databaseChangeLog:
       author: VladyslavYanchenko
       changes:
         - insert:
-            tableName: managers
+            tableName: manager
             columns:
               - column:
                   name: id
@@ -20,14 +20,15 @@ databaseChangeLog:
                   value: "0"
               - column:
                   name: created_at
-                  value: "2023-09-20 20:22:08.788"
+#                  value: "2023-09-20 20:22:08.788"
+                  value: "2023-09-20"
               - column:
                   name: updated_at
-                  value: "2023-09-20 20:22:08.788"
-#                  value: "2023-09-20"
+#                  value: "2023-09-20 20:22:08.788"
+                  value: "2023-09-20"
 
         - insert:
-            tableName: managers
+            tableName: manager
             columns:
               - column:
                   name: id
@@ -43,9 +44,9 @@ databaseChangeLog:
                   value: "0"
               - column:
                   name: created_at
-                  value: "2023-09-20 20:22:08.788"
-#                  value: "2023-09-20"
+#                  value: "2023-09-20 20:22:08.788"
+                  value: "2023-09-20"
               - column:
                   name: updated_at
-                  value: "2023-09-20 20:22:08.788"
-#                  value: "2023-09-20"
+#                  value: "2023-09-20 20:22:08.788"
+                  value: "2023-09-20"
